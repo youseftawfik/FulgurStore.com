@@ -1,0 +1,2 @@
+C:\Users\joota\source\repos\FulgurStore.com\FulgurStore.com\obj\Debug\FulgurStore.com.csprojAssemblyReference.cache
+C:\Users\joota\source\repos\FulgurStore.com\FulgurStore.com\obj\Debug\FulgurStore.com.csproj.CoreCompileInputs.cache

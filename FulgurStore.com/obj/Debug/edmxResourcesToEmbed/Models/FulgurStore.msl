@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FulgurStoreModelStoreContainer" CdmEntityContainer="FulgurStoreEntities1">
+    <EntitySetMapping Name="Brands">
+      <EntityTypeMapping TypeName="FulgurStoreModel.Brand">
+        <MappingFragment StoreEntitySet="Brands">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Brand_name" ColumnName="Brand_name" />
+          <ScalarProperty Name="Brand_image" ColumnName="Brand_image" />
+          <ScalarProperty Name="SubCategory_id" ColumnName="SubCategory_id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="FulgurStoreModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Category_name" ColumnName="Category_name" />
+          <ScalarProperty Name="Category_image" ColumnName="Category_image" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCategories">
+      <EntityTypeMapping TypeName="FulgurStoreModel.SubCategory">
+        <MappingFragment StoreEntitySet="SubCategories">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SubCategory_name" ColumnName="SubCategory_name" />
+          <ScalarProperty Name="Category_id" ColumnName="Category_id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

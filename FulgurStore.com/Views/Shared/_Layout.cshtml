@@ -60,8 +60,8 @@
                     </a>
                     <div class="collapse" id="form-elements">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> @Html.ActionLink("Add Category", "AddCategory", "Category", null, new { @class = "nav-link" }) </li>                                            
-                            <li class="nav-item"><a class="nav-link" href="{{URL::to('/add-subcategory')}}">Add Subcategory</a></li>
+                            <li class="nav-item">@Html.ActionLink("Add Category", "AddCategory", "Category", null, new { @class = "nav-link" }) </li>                                            
+                            <li class="nav-item">@Html.ActionLink("Add Subcategory", "AddSubcategory", "SubCategories", null, new { @class = "nav-link" })</li>
                             <li class="nav-item"><a class="nav-link" href="{{URL::to('/add-producttype')}}">Add Product Type</a></li>
                         </ul>
                     </div>

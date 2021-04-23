@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FulgurStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FulgurStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brands">
           <Key>
             <PropertyRef Name="ID" />
@@ -70,98 +70,80 @@
             <End Role="SubCategories" EntitySet="SubCategories" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FulgurStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="FulgurStoreEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Brands" EntityType="FulgurStoreModel.Brand" />
-          <EntitySet Name="Categories" EntityType="FulgurStoreModel.Category" />
-          <AssociationSet Name="FK_Brands_Categories" Association="FulgurStoreModel.FK_Brands_Categories">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Brand" EntitySet="Brands" />
-          </AssociationSet>
-          <EntitySet Name="SubCategories" EntityType="FulgurStoreModel.SubCategory" />
-          <AssociationSet Name="FK_Brands_SubCategories" Association="FulgurStoreModel.FK_Brands_SubCategories">
-            <End Role="SubCategory" EntitySet="SubCategories" />
-            <End Role="Brand" EntitySet="Brands" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubCategories_Categories" Association="FulgurStoreModel.FK_SubCategories_Categories">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="SubCategory" EntitySet="SubCategories" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Brand_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Brand_image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Category_id" Type="Int64" Nullable="false" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="FulgurStoreModel.FK_Brands_Categories" FromRole="Brand" ToRole="Category" />
+          <Property Name="Brand_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Brand_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SubCategory_id" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="SubCategory" Relationship="FulgurStoreModel.FK_Brands_SubCategories" FromRole="Brand" ToRole="SubCategory" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SubCategory" Relationship="Self.FK_Brands_SubCategories" FromRole="Brands" ToRole="SubCategories" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Category_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Category_image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Category_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Brands" Relationship="FulgurStoreModel.FK_Brands_Categories" FromRole="Category" ToRole="Brand" />
-          <NavigationProperty Name="SubCategories" Relationship="FulgurStoreModel.FK_SubCategories_Categories" FromRole="Category" ToRole="SubCategory" />
+          <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategories_Categories" FromRole="Categories" ToRole="SubCategories" />
         </EntityType>
-        <Association Name="FK_Brands_Categories">
-          <End Type="FulgurStoreModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="FulgurStoreModel.Brand" Role="Brand" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Brand">
-              <PropertyRef Name="Category_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="SubCategory">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubCategory_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubCategory_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Category_id" Type="Int64" Nullable="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Brands" Relationship="FulgurStoreModel.FK_Brands_SubCategories" FromRole="SubCategory" ToRole="Brand" />
-          <NavigationProperty Name="Category" Relationship="FulgurStoreModel.FK_SubCategories_Categories" FromRole="SubCategory" ToRole="Category" />
+          <NavigationProperty Name="Brands" Relationship="Self.FK_Brands_SubCategories" FromRole="SubCategories" ToRole="Brands" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_SubCategories_Categories" FromRole="SubCategories" ToRole="Categories" />
         </EntityType>
         <Association Name="FK_Brands_SubCategories">
-          <End Type="FulgurStoreModel.SubCategory" Role="SubCategory" Multiplicity="1" />
-          <End Type="FulgurStoreModel.Brand" Role="Brand" Multiplicity="*" />
+          <End Role="SubCategories" Type="Self.SubCategory" Multiplicity="1" />
+          <End Role="Brands" Type="Self.Brand" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SubCategory">
+            <Principal Role="SubCategories">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Brand">
+            <Dependent Role="Brands">
               <PropertyRef Name="SubCategory_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubCategories_Categories">
-          <End Type="FulgurStoreModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="FulgurStoreModel.SubCategory" Role="SubCategory" Multiplicity="*" />
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="SubCategories" Type="Self.SubCategory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="Categories">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="SubCategory">
+            <Dependent Role="SubCategories">
               <PropertyRef Name="Category_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="FulgurStoreEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brands" EntityType="Self.Brand" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
+          <AssociationSet Name="FK_Brands_SubCategories" Association="Self.FK_Brands_SubCategories">
+            <End Role="SubCategories" EntitySet="SubCategories" />
+            <End Role="Brands" EntitySet="Brands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategories_Categories" Association="Self.FK_SubCategories_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="SubCategories" EntitySet="SubCategories" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -171,31 +153,31 @@
           <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="FulgurStoreModel.Brand">
               <MappingFragment StoreEntitySet="Brands">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Brand_name" ColumnName="Brand_name" />
+                <ScalarProperty Name="Brand_image" ColumnName="Brand_image" />
                 <ScalarProperty Name="SubCategory_id" ColumnName="SubCategory_id" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Brand_image" ColumnName="Brand_image" />
-                <ScalarProperty Name="Brand_name" ColumnName="Brand_name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="FulgurStoreModel.Category">
               <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Category_image" ColumnName="Category_image" />
-                <ScalarProperty Name="Category_name" ColumnName="Category_name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Category_name" ColumnName="Category_name" />
+                <ScalarProperty Name="Category_image" ColumnName="Category_image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubCategories">
             <EntityTypeMapping TypeName="FulgurStoreModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategories">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Category_id" ColumnName="Category_id" />
-                <ScalarProperty Name="SubCategory_name" ColumnName="SubCategory_name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SubCategory_name" ColumnName="SubCategory_name" />
+                <ScalarProperty Name="Category_id" ColumnName="Category_id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

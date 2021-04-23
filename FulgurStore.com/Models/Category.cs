@@ -11,13 +11,12 @@ namespace FulgurStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
     public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.Brands = new HashSet<Brand>();
             this.SubCategories = new HashSet<SubCategory>();
         }
     
@@ -25,9 +24,8 @@ namespace FulgurStore.Models
         public string Category_name { get; set; }
         public string Category_image { get; set; }
         public bool Status { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Brand> Brands { get; set; }
+        public HttpPostedFileBase image_file { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubCategory> SubCategories { get; set; }
     }

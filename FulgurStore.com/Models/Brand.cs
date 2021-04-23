@@ -17,11 +17,9 @@ namespace FulgurStore.Models
         public long ID { get; set; }
         public string Brand_name { get; set; }
         public string Brand_image { get; set; }
-        public long Category_id { get; set; }
-        public bool Status { get; set; }
         public long SubCategory_id { get; set; }
+        public bool Status { get; set; }
     
-        public virtual Category Category { get; set; }
         public virtual SubCategory SubCategory { get; set; }
     }
 }
