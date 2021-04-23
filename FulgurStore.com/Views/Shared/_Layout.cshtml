@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <link href="~/Content/themify-icons.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/vendor.bundle.addons.css" rel="stylesheet" />
+    <link href="~/Content/vendor.bundle.base.css" rel="stylesheet" />
+
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="#"><img src="~/img/logo.png" class="mr-2" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="fas fa-angle-double-left"></span>
+                </button>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
+                            <img src="~/img/profile.png" alt="profile" />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-power-off"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="fas fa-bars"></span>
+                </button>
+            </div>
+        </nav>
+    
+    <div class="container-fluid page-body-wrapper">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/Index">
+                        <i class="fas fa-home"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+                        <i class="fas fa-plus"></i>
+                        <span class="menu-title">Creation</span>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <div class="collapse" id="form-elements">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> @Html.ActionLink("Add Category", "AddCategory", "Category", null, new { @class = "nav-link" }) </li>                                            
+                            <li class="nav-item"><a class="nav-link" href="{{URL::to('/add-subcategory')}}">Add Subcategory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{URL::to('/add-producttype')}}">Add Product Type</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                        <i class="fas fa-binoculars"></i>
+                        <span class="menu-title">Element</span>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> @Html.ActionLink("Categories", "AllCategories", "Category", null, new { @class = "nav-link" })</li>                                                    
+                            <li class="nav-item"> <a class="nav-link" href="{{URL::to('/Subcategory')}}">Subcategory</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{URL::to('/producttypes')}}">Product Type</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+            
+                @RenderBody()
+             
+        </div>
+    </div>
+        <script src="~/Scripts/vendor.bundle.addons.js"></script>
+        <script src="~/Scripts/vendor.bundle.base.js"></script>
+        <script src="~/Scripts/off-canvas.js"></script>
+        <script src="~/Scripts/hoverable-collapse.js"></script>
+        <script src="~/Scripts/template.js"></script>
+        <script src="~/Scripts/settings.js"></script>
+        <script src="~/Scripts/todolist.js"></script>
+        <script src="~/Scripts/dashboard.js"></script>
+        <script src="~/Scripts/data-table.js"></script>
+        <script src="~/Scripts/chart.js"></script>
+        <script src="~/Scripts/bootbox.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(document).on("click", "#delete", function (e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            bootbox.confirm("Do you want to delete it ?", function (confirmed) {
+                if (confirmed) {
+                    window.location.href = link;
+                };
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model  IEnumerable<FulgurStore.Models.Category>
+
+@{
+    ViewBag.Title = "AllCategories";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Categories</h4>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table id="order-listing" class="table" style="text-align:center">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Category Image</th>
+                                        <th>Category Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int increment = 0;}
+
+                                    @foreach (var item in Model)
+                                    {
+                                        increment++;
+
+                                        <tr>
+                                            <td>@increment</td>
+
+                                            <td><img src="@Url.Content(item.Category_image)"></td>
+                                            <td>@Html.DisplayFor(Model => item.Category_name)</td>
+
+                                            <td>
+                                                @if (item.Status == true)
+                                                {
+                                                    <label class="badge badge-success">Active</label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="badge badge-danger">Unactive</label>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                <a href="/Category/Update/@item.ID" class="btn btn-outline-primary">Update</a>
+                                                @Html.ActionLink("Delete", "Delete", "Category", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
+
+                                                @if (item.Status == true)
+                                                {
+                                                    @Html.ActionLink("Unactivate", "Unactivate", "Category", new { id = item.ID }, new { @class = "btn btn-outline-warning" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Activate", "Activate", "Category", new { id = item.ID }, new { @class = "btn btn-outline-success" })
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
