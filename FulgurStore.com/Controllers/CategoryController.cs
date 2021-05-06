@@ -87,20 +87,6 @@ namespace FulgurStore.Controllers
             db.SaveChanges();
             return RedirectToAction("AllCategories");
         }
-        [HttpPost]
-        public ActionResult Add(Category category)
-        {
-            string filename = Path.GetFileNameWithoutExtension(category.image_file.FileName);
-            string extention = Path.GetExtension(category.image_file.FileName);
-            filename = filename + DateTime.Now.ToString("yymmssfff") + extention;
-            category.Category_image = "~/Images/" + filename;
-            filename = Path.Combine(Server.MapPath("~/Images/"), filename);
-            category.image_file.SaveAs(filename);
-            db.Categories.Add(category);
-            db.SaveChanges();
-            //ModelState.Clear();
-            return RedirectToAction("AllCategories");
-        }
 
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FulgurStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FulgurStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brands">
           <Key>
             <PropertyRef Name="ID" />
@@ -30,6 +30,7 @@
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubCategory_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubCategory_image" Type="varchar(max)" Nullable="false" />
           <Property Name="Category_id" Type="bigint" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
@@ -70,8 +71,7 @@
             <End Role="SubCategories" EntitySet="SubCategories" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FulgurStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -106,6 +106,7 @@
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Brands" Relationship="Self.FK_Brands_SubCategories" FromRole="SubCategories" ToRole="Brands" />
           <NavigationProperty Name="Category" Relationship="Self.FK_SubCategories_Categories" FromRole="SubCategories" ToRole="Categories" />
+          <Property Name="SubCategory_image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Brands_SubCategories">
           <End Role="SubCategories" Type="Self.SubCategory" Multiplicity="1" />
@@ -174,6 +175,7 @@
           <EntitySetMapping Name="SubCategories">
             <EntityTypeMapping TypeName="FulgurStoreModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategories">
+                <ScalarProperty Name="SubCategory_image" ColumnName="SubCategory_image" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SubCategory_name" ColumnName="SubCategory_name" />
                 <ScalarProperty Name="Category_id" ColumnName="Category_id" />

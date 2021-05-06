@@ -11,6 +11,7 @@ namespace FulgurStore.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Web;
     
     public partial class SubCategory
     {
@@ -24,7 +25,9 @@ namespace FulgurStore.Models
         public string SubCategory_name { get; set; }
         public long Category_id { get; set; }
         public bool Status { get; set; }
-    
+        public string SubCategory_image { get; set; }
+        public HttpPostedFileBase image_file { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Brand> Brands { get; set; }
         public virtual Category Category { get; set; }

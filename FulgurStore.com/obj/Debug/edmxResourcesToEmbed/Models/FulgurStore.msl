@@ -25,6 +25,7 @@
     <EntitySetMapping Name="SubCategories">
       <EntityTypeMapping TypeName="FulgurStoreModel.SubCategory">
         <MappingFragment StoreEntitySet="SubCategories">
+          <ScalarProperty Name="SubCategory_image" ColumnName="SubCategory_image" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SubCategory_name" ColumnName="SubCategory_name" />
           <ScalarProperty Name="Category_id" ColumnName="Category_id" />

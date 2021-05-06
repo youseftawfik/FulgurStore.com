@@ -1,7 +1,7 @@
-﻿@model  IEnumerable<FulgurStore.Models.Category>
+﻿@model IEnumerable<FulgurStore.Models.SubCategory>
 
 @{
-    ViewBag.Title = "AllCategories";
+    ViewBag.Title = "AllSubcategories";
 }
 
 <div class="main-panel">
@@ -16,25 +16,26 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Category Image</th>
+                                        <th>Subcategory Image</th>
+                                        <th>Subcategory Name</th>
                                         <th>Category Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{ int increment = 0;}
+                                    @{ int increment = 0;}                                                                        
 
                                     @foreach (var item in Model)
                                     {
                                         increment++;
-
+                                        
                                         <tr>
                                             <td>@increment</td>
 
-                                            <td><img src="@Url.Content(item.Category_image)"></td>
-                                            <td>@Html.DisplayFor(Model => item.Category_name)</td>
-
+                                            <td><img src="@Url.Content(item.SubCategory_image)"></td>
+                                            <td>@Html.DisplayFor(Model => item.SubCategory_name)</td>
+                                            <td>@Html.DisplayFor(Model => item.Category.Category_name)</td>
                                             <td>
                                                 @if (item.Status == true)
                                                 {
@@ -48,15 +49,15 @@
 
                                             <td>
                                                 <a href="#" class="btn btn-outline-primary">Update</a>
-                                                @Html.ActionLink("Delete", "Delete", "Category", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
+                                                @Html.ActionLink("Delete", "Delete", "SubCategories", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
 
                                                 @if (item.Status == true)
                                                 {
-                                                    @Html.ActionLink("Unactivate", "Unactivate", "Category", new { id = item.ID }, new { @class = "btn btn-outline-warning" })
+                                                    @Html.ActionLink("Unactivate", "Unactivate", "SubCategories", new { id = item.ID }, new { @class = "btn btn-outline-warning" })
                                                 }
                                                 else
                                                 {
-                                                    @Html.ActionLink("Activate", "Activate", "Category", new { id = item.ID }, new { @class = "btn btn-outline-success" })
+                                                    @Html.ActionLink("Activate", "Activate", "SubCategories", new { id = item.ID }, new { @class = "btn btn-outline-success" })
                                                 }
                                             </td>
                                         </tr>
@@ -70,3 +71,4 @@
         </div>
     </div>
 </div>
+

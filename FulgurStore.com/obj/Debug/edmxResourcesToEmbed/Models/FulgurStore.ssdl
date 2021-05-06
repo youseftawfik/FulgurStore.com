@@ -25,6 +25,7 @@
     </Key>
     <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubCategory_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SubCategory_image" Type="varchar(max)" Nullable="false" />
     <Property Name="Category_id" Type="bigint" Nullable="false" />
     <Property Name="Status" Type="bit" Nullable="false" />
   </EntityType>

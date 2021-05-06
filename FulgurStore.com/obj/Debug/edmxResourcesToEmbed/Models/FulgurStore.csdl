@@ -31,6 +31,7 @@
     <Property Name="Status" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Brands" Relationship="Self.FK_Brands_SubCategories" FromRole="SubCategories" ToRole="Brands" />
     <NavigationProperty Name="Category" Relationship="Self.FK_SubCategories_Categories" FromRole="SubCategories" ToRole="Categories" />
+    <Property Name="SubCategory_image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_Brands_SubCategories">
     <End Role="SubCategories" Type="Self.SubCategory" Multiplicity="1" />
